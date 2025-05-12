@@ -1,0 +1,18 @@
+# 기본적으로 무시해야 할 폴더들
+node_modules
+dist
+build
+.next
+coverage
+
+# 로그나 설정 파일
+*.log
+
+# 환경설정
+.env
+.env.*  
+
+# 기타
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
