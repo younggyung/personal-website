@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "home": "HOME",
+    "resume": "RESUME",
+    "about": "ABOUT",
+    "blog": "BLOG",
+    "contact": "CONTACT"
+  }
+}
