@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import '../style/globals.css';
-import { Nav, SideBar } from '@/component';
+import '@/style/globals.css';
+import { Nav, Profile } from '@/component';
 import { ThemeProvider } from '@/feature/context/ThemeContext';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -30,6 +30,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -40,8 +41,10 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider>
             <Nav />
-            <SideBar />
-            {children}
+            <div className="flex h-full">
+              <Profile />
+              {children}
+            </div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
