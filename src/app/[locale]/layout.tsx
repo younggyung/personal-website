@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/feature/context/ThemeContext';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import ConfigBox from '@/component/ConfigBox';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -40,10 +41,10 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider>
           <ThemeProvider>
-            <Nav />
-            <div className="flex h-full">
+            <div className="flex h-full w-full border-1">
+              <ConfigBox />
               <Profile />
-              {children}
+              <main className="lg:w-[60%]">{children}</main>
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>

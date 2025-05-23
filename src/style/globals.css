@@ -18,6 +18,7 @@ html.dark {
 html,
 body {
   height: 100%;
+  width: 100%;
   overflow-x: hidden;
   background: var(--background);
   background-image: var(--background-img);
