@@ -41,9 +41,9 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider>
           <ThemeProvider>
-            <div className="flex h-full w-full border-1">
+            <div className="mx-10 h-full w-full lg:flex">
               <ConfigBox />
-              <Profile />
+              <Profile className="mt-20 lg:sticky lg:max-h-screen lg:w-[40%]" />
               <main className="lg:w-[60%]">{children}</main>
             </div>
           </ThemeProvider>

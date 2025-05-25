@@ -1,18 +1,26 @@
+import cn from '@/lib/class-names';
 import Nav from './Nav';
 
-const Profile = () => {
+type ProfilePropType = {
+  className: string;
+};
+
+const Profile = ({ className }: ProfilePropType) => {
   return (
-    <header className="lg:sticky lg:top-0 lg:max-h-screen lg:w-[40%]">
+    <header className={cn(className, 'flex flex-col gap-20')}>
       {/* 프로필 사진 */}
-      <div className="h-50 w-50 border" />
-      <div className="flex flex-col gap-20">
-        <div>
-          <h3>타이틀</h3>
-          <div>소개</div>
+      <div>
+        <div className="mb-7 flex items-center gap-7">
+          <div className="h-20 w-20 rounded-full border" />
+          <div>
+            <h1 className="text-3xl">우영경</h1>
+            <h2 className="col-span-2 text-xl">프론트엔드 개발자</h2>
+          </div>
         </div>
-        <hr className="w-1/2 opacity-10" />
-        <Nav />
+        <p>소개글</p>
       </div>
+      <hr className="w-dvw text-black opacity-10 dark:text-white" />
+      <Nav />
     </header>
   );
 };
