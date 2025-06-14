@@ -15,11 +15,9 @@ html.dark {
   --text-main-color: white;
 }
 
-html,
-body {
+html {
+  scroll-behavior: smooth;
   height: 100%;
-  width: 100%;
-  overflow-x: hidden;
   background: var(--background);
   background-image: var(--background-img);
   background-size: cover;
@@ -27,6 +25,9 @@ body {
 }
 
 body {
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

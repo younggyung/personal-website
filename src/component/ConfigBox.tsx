@@ -42,7 +42,7 @@ const LanguageButton = () => {
 
 const ConfigBox = () => {
   return (
-    <div className="fixed top-1 right-3">
+    <div className="fixed top-1 right-10">
       <LanguageButton />
       <ThemeButton />
     </div>

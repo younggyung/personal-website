@@ -13,7 +13,7 @@ const Profile = ({ className }: ProfilePropType) => {
   const { frontmatter, content } = getMDX(`about.${locale}`);
 
   return (
-    <header className={cn(className, 'flex flex-col gap-20')}>
+    <header className={cn(className, 'mt-10 flex gap-20 lg:flex-col')}>
       <div>
         <div className="mb-7 flex items-center gap-7">
           <div className="h-40 w-40 rounded-full border" />
@@ -25,7 +25,7 @@ const Profile = ({ className }: ProfilePropType) => {
         </div>
         {content}
       </div>
-      <hr className="w-dvw text-black opacity-10 dark:text-white" />
+      <hr className="text-black opacity-10 dark:text-white" />
       <Nav />
     </header>
   );

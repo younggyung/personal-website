@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import '@/style/globals.css';
-import { Nav, Profile } from '@/component';
+import { Profile } from '@/component';
 import { ThemeProvider } from '@/feature/context/ThemeContext';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -41,10 +41,11 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider>
           <ThemeProvider>
-            <div className="mx-10 h-full w-full lg:flex">
+            {/* app 최상위 container */}
+            <div className="mx-10 lg:flex">
               <ConfigBox />
-              <Profile className="mt-20 lg:sticky lg:max-h-screen lg:w-[40%]" />
-              <main className="lg:w-[60%]">{children}</main>
+              <Profile className="lg:sticky lg:top-10 lg:max-h-[calc(100vh-2.5rem)] lg:w-[30%]" />
+              <main className="lg:w-[70%]">{children}</main>
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>
