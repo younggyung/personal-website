@@ -49,13 +49,15 @@ const Nav = () => {
         }}
         className={cn(showNav ? 'fixed right-5 bottom-1/3 lg:static' : 'hidden items-center gap-2 lg:block')}
       >
-        <ArrowUpwardIcon />
+        <ArrowUpwardIcon onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
         {ROUTES.map((i, idx) => (
           <li className="list-none" key={idx}>
-            <Link href={i.path}>{t(i.labelKey)}</Link>
+            <a href={i.path} className="scroll-smooth">
+              {t(i.labelKey)}
+            </a>
           </li>
         ))}
-        <ArrowDownwardIcon />
+        <ArrowDownwardIcon onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })} />
       </nav>
     </>
   );
