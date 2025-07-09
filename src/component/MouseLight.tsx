@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 
 const MouseLight = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [lightOn, setLightOn] = useState<Boolean>(true);
+  const [lightOn, setLightOn] = useState<boolean>(true);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.screenX, y: e.screenY });
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleTurnOnLight = (e: MouseEvent) => {
@@ -18,7 +18,10 @@ const MouseLight = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('dblclick', handleTurnOnLight);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('dblclick', handleTurnOnLight);
+    };
   }, []);
 
   const backgroundStyle = {

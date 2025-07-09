@@ -1,5 +1,5 @@
 import { About, Project, Resume } from '@/component';
-import MouseLight from '@/component/MoutLight';
+import MouseLight from '@/component/MouseLight';
 import getMDX from '@/lib/getMDX';
 import { useLocale, useTranslations } from 'next-intl';
 
