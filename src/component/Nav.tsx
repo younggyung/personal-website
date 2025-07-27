@@ -47,7 +47,7 @@ const Nav = () => {
           isHoverRef.current = false;
           resetHideTimer();
         }}
-        className={cn(showNav ? 'fixed right-5 bottom-1/3 lg:static' : 'hidden items-center gap-2 lg:block')}
+        className={cn(showNav ? 'fixed right-5 bottom-1/3 z-50 lg:static' : 'hidden items-center gap-2 lg:block')}
       >
         <ArrowUpwardIcon onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
         {ROUTES.map((i, idx) => (

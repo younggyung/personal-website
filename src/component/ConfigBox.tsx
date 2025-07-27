@@ -1,7 +1,8 @@
 'use client';
 import { useTheme } from '@/feature/context/ThemeContext';
 import { Nightlight, LightMode } from '@mui/icons-material';
-import { ChangeEvent, useTransition } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { ChangeEvent, useEffect, useRef, useState, useTransition } from 'react';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
 import { Locale, useLocale } from 'next-intl';
@@ -14,13 +15,15 @@ const ThemeButton = () => {
 const LanguageButton = () => {
   const router = useRouter();
   const locale = useLocale();
+  const ref = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
   const [isPending, startTransition] = useTransition();
   // todo-develop: 다국어 컨텐츠 많아져서 느려질 경우 isPending 이용하기
   const pathname = usePathname();
   const params = useParams();
 
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = event.target.value as Locale;
+  const handleSelectChange = (value: Locale) => {
+    const nextLocale = value;
     startTransition(() => {
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`
@@ -32,17 +35,35 @@ const LanguageButton = () => {
     });
   };
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <select onChange={handleSelectChange} defaultValue={locale}>
-      <option value="ko">한국어</option>
-      <option value="en">English</option>
-    </select>
+    <div className="relative cursor-pointer" ref={ref}>
+      <button onClick={() => setIsOpen(true)}>
+        {locale === 'ko' ? '한국어' : 'English'}
+        <KeyboardArrowDownIcon />
+      </button>
+      {isOpen && (
+        <ul className="absolute rounded-md border">
+          <li onClick={() => handleSelectChange('ko')}>한국어</li>
+          <li onClick={() => handleSelectChange('en')}>English</li>
+        </ul>
+      )}
+    </div>
   );
 };
 
 const ConfigBox = () => {
   return (
-    <div className="fixed top-1 right-10">
+    <div className="fixed top-1 right-5 z-50 flex gap-3">
       <LanguageButton />
       <ThemeButton />
     </div>
