@@ -45,16 +45,33 @@ const LanguageButton = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const language: { locale: string; label: string }[] = [
+    {
+      locale: 'ko',
+      label: '한국어',
+    },
+    {
+      locale: 'en',
+      label: 'English',
+    },
+  ];
+
   return (
-    <div className="relative cursor-pointer" ref={ref}>
+    <div className="relative cursor-pointer text-sm" ref={ref}>
       <button onClick={() => setIsOpen(true)}>
         {locale === 'ko' ? '한국어' : 'English'}
         <KeyboardArrowDownIcon />
       </button>
       {isOpen && (
-        <ul className="absolute rounded-md border">
-          <li onClick={() => handleSelectChange('ko')}>한국어</li>
-          <li onClick={() => handleSelectChange('en')}>English</li>
+        <ul className="absolute rounded-md border shadow-md">
+          {language.map(item => (
+            <li
+              className="cursor-pointer rounded-md px-1 py-0.5 hover:bg-gray-200"
+              onClick={() => handleSelectChange(item.locale)}
+            >
+              {item.label}
+            </li>
+          ))}
         </ul>
       )}
     </div>
