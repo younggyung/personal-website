@@ -6,6 +6,14 @@
   --foreground: #212121e6;
   --text-main-color: black;
   --background-img: url('/image/light.png');
+  --sh-class: #556b9b;
+  --sh-sign: #6dafc7;
+  --sh-string: #7a9c55;
+  --sh-keyword: #4c4063;
+  --sh-comment: #343952;
+  --sh-jsxliterals: #384666;
+  --sh-property: #46837a;
+  --sh-entity: #9c7c4c;
 }
 
 html.dark {
@@ -13,6 +21,14 @@ html.dark {
   --foreground: #ededed;
   --background-img: url('/image/dark.png');
   --text-main-color: white;
+  --sh-class: #7aa2f7;
+  --sh-sign: #89ddff;
+  --sh-string: #9ece6a;
+  --sh-keyword: #bb9af7;
+  --sh-comment: #565f89;
+  --sh-jsxliterals: #7aa2f7;
+  --sh-property: #73daca;
+  --sh-entity: #e0af68;
 }
 
 html {
@@ -44,5 +60,57 @@ a {
 
 @theme {
   --color-theme: #dceaa2;
-  --color-dark-theme: 212121e6;
+  --color-dark-theme: #212121e6;
+}
+
+pre {
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  line-height: 1;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* pre code > span .sh__token--identifier {
+  color: white !important;
+} */
+
+html code {
+  background-color: #d6c5b1;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+}
+
+html.dark code {
+  background-color: var(--color-dark-theme);
+}
+
+/* pre 에 포함되지 않은 그냥 `` code */
+code:not(pre code) span {
+  font-weight: 500;
+  color: var(--color-red-400) !important;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+pre code span {
+  font-weight: 550;
 }
