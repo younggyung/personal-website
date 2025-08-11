@@ -8,8 +8,7 @@ const MouseLight = () => {
   const [lightOn, setLightOn] = useState<boolean>(true);
   const [showHint, setShowHint] = useState(true);
 
-  const onSoundRef = useRef<HTMLAudioElement | null>(null);
-  const offSoundRef = useRef<HTMLAudioElement | null>(null);
+  const soundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -17,15 +16,8 @@ const MouseLight = () => {
     };
 
     const handleTurnOnLight = () => {
-      setLightOn(prev => {
-        const isTurningOn = !prev;
-        if (isTurningOn) {
-          onSoundRef.current?.play();
-        } else {
-          offSoundRef.current?.play();
-        }
-        return !prev;
-      });
+      setLightOn(prev => !prev);
+      soundRef.current?.play();
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -58,9 +50,7 @@ const MouseLight = () => {
 
   return (
     <>
-      <audio ref={onSoundRef} src="/sounds/toggle-on.mp3" preload="auto" />
-      <audio ref={offSoundRef} src="/sounds/toggle-off.mp3" preload="auto" />
-
+      <audio ref={soundRef} src="/sound/light-switch.mp3" preload="auto" />
       <div className={cn(lightOn && 'pointer-events-none fixed inset-0')} style={backgroundStyle} />
       <div
         className="pointer-events-none fixed z-50 rounded-md bg-black/50 px-2 py-1 text-xs text-white transition-opacity duration-500"
