@@ -41,11 +41,16 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider>
           <ThemeProvider>
-            {/* app 최상위 container */}
+            {/* 전역 헤더 */}
+            <header className="sticky top-0 z-50">
+              <div className="mx-5 flex items-center justify-end py-1">
+                <ConfigBox />
+              </div>
+            </header>
+            {/* 본문영역 */}
             <div className="mx-10 lg:flex">
-              <ConfigBox />
               <Profile className="lg:sticky lg:top-10 lg:max-h-[calc(100vh-2.5rem)] lg:w-[30%]" />
-              <main className="lg:w-[70%]">{children}</main>
+              <main className="mt-8 lg:w-[70%]">{children}</main>
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>

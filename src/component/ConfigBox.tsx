@@ -63,10 +63,11 @@ const LanguageButton = () => {
         <KeyboardArrowDownIcon />
       </button>
       {isOpen && (
-        <ul className="absolute rounded-md border shadow-md">
+        <ul className="absolute rounded-md border p-1 shadow-md dark:bg-black">
           {language.map(item => (
             <li
-              className="cursor-pointer rounded-md px-1 py-0.5 hover:bg-gray-200"
+              key={item.label}
+              className="rounded-md px-1 py-0.5 hover:cursor-pointer hover:bg-gray-200/10"
               onClick={() => handleSelectChange(item.locale)}
             >
               {item.label}
@@ -80,7 +81,7 @@ const LanguageButton = () => {
 
 const ConfigBox = () => {
   return (
-    <div className="fixed top-1 right-5 z-50 flex gap-3">
+    <div className="flex gap-3">
       <LanguageButton />
       <ThemeButton />
     </div>
