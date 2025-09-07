@@ -9,7 +9,17 @@ import { Locale, useLocale } from 'next-intl';
 
 const ThemeButton = () => {
   const { theme, toggleTheme } = useTheme();
-  return <button onClick={toggleTheme}>{theme !== 'dark' ? <Nightlight /> : <LightMode />}</button>;
+  return (
+    <button
+      role="switch"
+      aria-checked={theme === 'dark'}
+      aria-label="Toggle theme"
+      className="rounded-full border border-gray-200 bg-white px-3 py-1 text-sm shadow-sm hover:bg-gray-50 dark:border-gray-800 dark:bg-transparent dark:hover:bg-gray-900"
+      onClick={toggleTheme}
+    >
+      {theme}
+    </button>
+  );
 };
 
 const LanguageButton = () => {
@@ -57,24 +67,23 @@ const LanguageButton = () => {
   ];
 
   return (
-    <div className="relative cursor-pointer text-sm" ref={ref}>
-      <button onClick={() => setIsOpen(true)}>
-        {locale === 'ko' ? '한국어' : 'English'}
-        <KeyboardArrowDownIcon />
+    <div className="inline-flex overflow-hidden rounded-full border border-gray-200 text-sm shadow-sm dark:border-gray-800">
+      <button
+        className={`px-3 py-1 ${locale === 'ko' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white hover:bg-gray-50 dark:bg-transparent dark:hover:bg-gray-900'}`}
+        aria-pressed={locale === 'ko'}
+        aria-label="Set language: Korean"
+        onClick={() => handleSelectChange('ko')}
+      >
+        KO
       </button>
-      {isOpen && (
-        <ul className="absolute rounded-md border p-1 shadow-md dark:bg-black">
-          {language.map(item => (
-            <li
-              key={item.label}
-              className="rounded-md px-1 py-0.5 hover:cursor-pointer hover:bg-gray-200/10"
-              onClick={() => handleSelectChange(item.locale)}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
-      )}
+      <button
+        className={`px-3 py-1 ${locale === 'en' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-white hover:bg-gray-50 dark:bg-transparent dark:hover:bg-gray-900'}`}
+        aria-pressed={locale === 'en'}
+        aria-label="Set language: English"
+        onClick={() => handleSelectChange('en')}
+      >
+        EN
+      </button>
     </div>
   );
 };

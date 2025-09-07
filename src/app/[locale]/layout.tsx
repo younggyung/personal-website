@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import '@/style/globals.css';
-import { Profile } from '@/component';
+import { Nav, Profile } from '@/component';
 import { ThemeProvider } from '@/feature/context/ThemeContext';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -42,15 +42,20 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider>
             {/* 전역 헤더 */}
-            <header className="sticky top-0 z-50">
-              <div className="mx-5 flex items-center justify-end py-1">
+            <header className="sticky top-0 z-20 border-b border-gray-200 bg-green-200/70 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:border-gray-800 dark:bg-gray-950/60">
+              <div className="mx-auto flex h-12 items-center justify-between px-4">
+                YOKI — Front-End
+                <Nav type="header" />
                 <ConfigBox />
               </div>
             </header>
             {/* 본문영역 */}
-            <div className="mx-10 lg:flex">
-              <Profile className="lg:sticky lg:top-10 lg:max-h-[calc(100vh-2.5rem)] lg:w-[30%]" />
-              <main className="mt-8 lg:w-[70%]">{children}</main>
+            <div className="lg:flex">
+              <Profile className="top-12 lg:sticky lg:h-[calc(100svh-3rem)] lg:w-[20%]" />
+              <main className="mt-8 lg:w-[70%]">
+                {children}
+                <Nav type="mobile" />
+              </main>
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>
